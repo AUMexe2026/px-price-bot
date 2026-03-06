@@ -71,7 +71,7 @@ price_display = f"${price_str}"
 # Процент за 24ч (основной)
 change_24h_str = f"{change_24h:+.2f}%" if change_24h is not None else "?"
 
-regular_text = f"{price_display} <b>[{change_24h_str}]</b>"
+regular_text = f"{price_display}   <b>[{change_24h_str}]</b>"
 
 # Проверяем резкий скачок по 1h (для памп/дамп)
 if change_1h is not None:
