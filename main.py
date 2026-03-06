@@ -42,7 +42,7 @@ def send_message(text, urgent=False):
     payload = {
         "chat_id": CHAT_ID,
         "text": text,
-        "parse_mode": "Markdown"
+        "parse_mode": "HTML"
     }
     if MESSAGE_THREAD_ID:
         payload["message_thread_id"] = int(MESSAGE_THREAD_ID)
@@ -71,12 +71,12 @@ price_display = f"${price_str}"
 # Процент за 24ч (основной)
 change_24h_str = f"{change_24h:+.2f}%" if change_24h is not None else "?"
 
-regular_text = f"{price_display} [{change_24h_str}]"
+regular_text = f"{price_display} <b>[{change_24h_str}]</b>"
 
 # Проверяем резкий скачок по 1h (для памп/дамп)
 if change_1h is not None:
     if change_1h >= PUMP_THRESHOLD:
-        alert_text = f"РЕЗКИЙ ПАМП +{change_1h:.1f}% за час\n{regular_text}"
+        alert_text = f"РЕЗКИЙ ПАМП +{change_1h:.1f}% за час\n{price_display} <b>[{change_24h_str}]</b>"
         send_message(alert_text, urgent=True)
     elif change_1h <= DUMP_THRESHOLD:
         alert_text = f"РЕЗКИЙ ДАМП {change_1h:.1f}% за час\n{regular_text}"
