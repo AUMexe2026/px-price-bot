@@ -2,7 +2,7 @@ name: PX Price Bot
 
 on:
   schedule:
-    - cron: '*/15 * * * *'     # каждые 15 минут
+    - cron: '*/1 * * * *'     # каждые 15 минут
   workflow_dispatch:           # можно запустить вручную
 
 jobs:
